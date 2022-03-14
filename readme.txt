@@ -1,0 +1,1 @@
+Create the database with name loginsys and improt the usertable.sql in your database.

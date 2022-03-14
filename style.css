@@ -1,0 +1,112 @@
+body {
+    background: #f0f2f5;
+
+}
+/* Giving min height to the div. */
+.h-div{
+    min-height: 89vh;
+}
+
+.form-group {
+    width: 350px;
+    padding: 20px;
+    margin: 5px auto 0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group h2 {
+    color: #1c8adb;
+    margin-bottom: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.form-btn {
+    color: #1c8adb;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.form-btn:hover {
+    color: #fff;
+    background: #1c8adb;
+
+}
+
+.form-input::placeholder {
+    /* text-align: center; */
+    font-size: large;
+    padding-left: 9px;
+    /* margin-left: 50px; */
+}
+
+.btn-form {
+    padding: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 8px;
+    font-family: sans-serif;
+}
+
+/* google button  */
+#g-btn {
+    background: #ff0000;
+    color: #fff;
+}
+
+#g-btn:hover {
+    background: #ff4f23;
+}
+
+/* facebook button  */
+
+#f-btn {
+    background: #0000ff;
+    color: #fff;
+}
+
+#f-btn:hover {
+    background: #3f53ff;
+}
+
+/* To remove the border while focus in bootstrap  */
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
+
+
+/* Code to make line in paragraph like this:  ----- text ----- ,  From css to the form*/
+
+.form-p {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+.form-p span {
+    background: #f0f2f5;
+    padding: 0 10px;
+}
+
