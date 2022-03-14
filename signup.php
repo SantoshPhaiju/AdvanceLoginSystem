@@ -147,9 +147,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i> </span>
                     <input type="password" name="cpass" id="cpass" class="form-control" placeholder="Confirm Password" aria-label="phone" aria-describedby="basic-addon1" required>
                 </div>
-                <div class="input-group mb-3 file">
+                <div class="input-group mb-3 file" style="display: none;">
                     <label style="text-align: justify;" for="formFile" class="form-label">Choose Profile Image:</label>
-                    <input style="width: 100%;" class="user-image form-control" type="file" id="formFile" name="user-image">
+                    <input style="width: 100%;" style="visibility: hidden;" class="user-image form-control" type="file" id="formFile" name="user-image">
                     
                 </div>
 
