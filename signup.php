@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "_dbconnect.php";
 $showError = false;
 $showAlert = false;
@@ -50,6 +50,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
     $hash = password_hash($pass, PASSWORD_BCRYPT);
 
+    $token = bin2hex(random_bytes(15));
+
     // To check whether the email exists or not
     $existSql = "SELECT * from usertable WHERE email = '$email'";
     $result1 = mysqli_query($conn, $existSql);
@@ -61,13 +63,26 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
       </div> ';
     } else {
         if ($pass == $cpass) {
-            $sql = "INSERT INTO usertable (`username`, `email`, `phone`, `password`, `userImg`) VALUES ('$username', '$email', '$phone', '$hash', '$new_name')";
+            $sql = "INSERT INTO usertable (`username`, `email`, `phone`, `password`, `userImg`, `token`, `status`) VALUES ('$username', '$email', '$phone', '$hash', '$new_name', '$token', 'inactive')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
-                $showAlert = ' <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Your account has been created. Now you can continue with <a href="login.php"> Login </a>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> ';
+                
+
+              $to_email = $email;
+              $subject = "Email activation.";
+              $body = "Hi $username. Click here to acitvate your account
+                      http://localhost/AdvanceLoginSystem/activate.php?token=$token";
+              $headers = "From: santoshphaiju@gmail.com";
+
+              if(mail($to_email, $subject, $body, $headers)){
+                $_SESSION['alert'] = ' <p class="p-4 bg-success text-white"><strong>Success!</strong> Your account has been created. Please check your email to activate your account '. $email .'</p>. 
+                 ';
+              header("location: login.php");
+              }
+              else{
+                  echo "Mail sending failed.";
+              }
+
             }
         } else {
             $showError = ' <div class="alert alert-danger alert-dismissible fade show" role="alert">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2022 at 08:12 AM
+-- Generation Time: Mar 15, 2022 at 09:35 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -34,6 +34,8 @@ CREATE TABLE `usertable` (
   `phone` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `userImg` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,8 +43,9 @@ CREATE TABLE `usertable` (
 -- Dumping data for table `usertable`
 --
 
-INSERT INTO `usertable` (`id`, `username`, `email`, `phone`, `password`, `userImg`, `timestamp`) VALUES
-(1, 'Santosh Phaiju', 'santoshphaiju@gmail.com', '9803045389', '$2y$10$lII62ANSUtsb6tucRwzx0OzDmLc7FJD7QxpIXS7.dhEbrif4IP1pC', '1647241760-265562316_360515715834963_4986341484160088609_n.jpg', '2022-03-14 12:53:39');
+INSERT INTO `usertable` (`id`, `username`, `email`, `phone`, `password`, `userImg`, `token`, `status`, `timestamp`) VALUES
+(6, 'Santosh Phaiju', 'santoshphaiju@gmail.com', '9803045389', '$2y$10$FY/xmY7IqaObKjDpeBHA1.mk5.xjXlGGMg.8lOIy/M3xxahUEHTO2', '', '69698fef234d35a24418be19a6530f', 'active', '2022-03-15 14:01:05'),
+(7, 'santosh', 'santoshphaiju062@gmail.com', '9803045389', '$2y$10$z/zKzHGdUhihtN6LPIPbheSuyfcW0pSij5gqV8rVz90FAPJ5l/IDG', '', '55294eea3974215c188ef4de573704', 'active', '2022-03-15 14:14:04');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +65,7 @@ ALTER TABLE `usertable`
 -- AUTO_INCREMENT for table `usertable`
 --
 ALTER TABLE `usertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

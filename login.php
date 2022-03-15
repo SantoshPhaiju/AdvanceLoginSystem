@@ -11,7 +11,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     $pass = mysqli_real_escape_string($conn, $_POST['pass']);
 
     //   Checking whether the email exists or not
-    $existSql = "SELECT * from usertable WHERE email = '$email'";
+    $existSql = "SELECT * from usertable WHERE `email` = '$email' AND `status` = 'active'";
     $result = mysqli_query($conn, $existSql);
     $numRows = mysqli_num_rows($result);
     if ($numRows) {
@@ -37,7 +37,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         }
     } else {
         $showError = ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Error!</strong> Email doesn\'t exists!
+      <strong>Error!</strong> Email is not verified.
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div> ';
     }
@@ -65,12 +65,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     <?php include 'header.php'; ?>
 
     <?php
+    
     if ($showError) {
         echo $showError;
     }
     if ($showAlert) {
         echo $showAlert;
     }
+  
 
     ?>
 
@@ -78,13 +80,23 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
     
     <div class="form-group">
-        <h2>Create account</h2>
+        <h2>Login with your account</h2>
         <p>Get started with your free account</p>
         <button class="my-2 form-btn" id="g-btn"><i class="fab fa-google me-2"></i> Login Via Gmail</button>
         <br>
         <button class="form-btn" id="f-btn"><i class="fab fa-facebook-f me-2"></i> Login Via Facebook</button>
         <p class="form-p"><span>OR</span></p>
-        
+        <?php
+        session_start();
+        if(isset($_SESSION['alert'])){
+        echo $_SESSION['alert'];
+    }else{
+        echo ' <div class="alert alert-warning alert-dismissible fade show" role="alert">
+         You are logged out. Login again.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    }
+    ?>
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']);  ?>" method="POST">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i> </span>
@@ -95,7 +107,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
                 <input type="password" name="pass" id="pass" class="form-control" placeholder="Create Password" aria-label="phone" aria-describedby="basic-addon1" required>
             </div>
             <input type="hidden" name="default-img" id="default-img" value="user-img.png">
-            <button class="btn btn-primary my-2 w-100 btn-form"> Login </button>
+            <button class="btn btn-primary my-2 w-100 btn-form"> Login Now </button>
             <p class="my-2"> Don't have an account? <a href="signup.php">Singup</a> </p>
         </form>
     </div>
