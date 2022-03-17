@@ -4,7 +4,7 @@ body {
 }
 /* Giving min height to the div. */
 .h-div{
-    min-height: 89vh;
+    min-height: 100vh;
 }
 
 .form-group {

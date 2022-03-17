@@ -179,7 +179,8 @@ if (isset($_POST['update'])) {
                     <p>Username: <?php echo $row['username'] ?></p>
                     <p>Email: <?php echo $row['email'] ?></p>
                     <p>Phone Number: <?php echo $row['phone'] ?></p>
-                    <a href="logout.php" class="btn btn-primary my-2">Logout</a>
+                    <a href="logout.php" class="btn btn-primary my-2" onClick="javascript: return confirm('Are you sure want to Logout.');">Logout</a>
+
                 </div>
                 <div class="col-md-9">
                     <div class="user-detail">

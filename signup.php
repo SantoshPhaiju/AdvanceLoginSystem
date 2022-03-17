@@ -66,7 +66,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $sql = "INSERT INTO usertable (`username`, `email`, `phone`, `password`, `userImg`, `token`, `status`) VALUES ('$username', '$email', '$phone', '$hash', '$new_name', '$token', 'inactive')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
-                
 
               $to_email = $email;
               $subject = "Email activation.";
@@ -75,9 +74,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
               $headers = "From: santoshphaiju@gmail.com";
 
               if(mail($to_email, $subject, $body, $headers)){
-                $_SESSION['alert'] = ' <p class="p-4 bg-success text-white"><strong>Success!</strong> Your account has been created. Please check your email to activate your account '. $email .'</p>. 
+                $_SESSION['alert'] = ' <p class="p-2 bg-success text-white"><strong>Success!</strong> Your account has been created. Please check your email to activate your account '. $email .'</p> 
                  ';
-              header("location: login.php");
+              header("location: signup.php");
               }
               else{
                   echo "Mail sending failed.";
@@ -113,8 +112,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             text-align: justify;
         }
       
-
-       
     </style>
 </head>
 
@@ -131,7 +128,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
     ?>
 
-    <div class="h-div">
+    <div class="h-div" style="min-height: 98vh;">
 
         <div class="form-group">
             <h2>Create account</h2>
@@ -140,6 +137,12 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             <br>
             <button class="form-btn" id="f-btn"><i class="fab fa-facebook-f me-2"></i> Login Via Facebook</button>
             <p class="form-p"><span>OR</span></p>
+            <?php
+                 if(isset($_SESSION['alert'])){
+                    echo $_SESSION['alert'];
+                }
+                
+            ?>
 
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF']);  ?>" method="POST">
                 <div class="input-group mb-3">
