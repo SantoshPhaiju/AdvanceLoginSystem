@@ -3,7 +3,8 @@
 setcookie('loggedin', 'true', time() - 3600, '/AdvanceLoginSystem');
 setcookie('emailCookie', $email, time() - 3600, '/AdvanceLoginSystem');
 setcookie('passwordCookie', $pass, time() - 3600, '/AdvanceLoginSystem');
-session_start();
+
+
 
 session_unset();
 session_destroy();

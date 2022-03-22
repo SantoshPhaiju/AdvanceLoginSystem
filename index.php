@@ -76,6 +76,8 @@ if (isset($_POST['update'])) {
 
 
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -172,13 +174,16 @@ if (isset($_POST['update'])) {
                         }else{
                             echo '<img class="user-img" src="upload/'. $row['userImg'] .' " alt="user-image">';
                         }
-                            ?>
+                        
+                        ?>
+                            
                     </div>
                     <h3 class="my-2">Profile Picture</h3>
                     <h4>Your Details:</h4>
                     <p>Username: <?php echo $row['username'] ?></p>
                     <p>Email: <?php echo $row['email'] ?></p>
                     <p>Phone Number: <?php echo $row['phone'] ?></p>
+                    <a href="changepassword.php?userid=<?php echo $userid ?>" class="btn btn-primary my-2">Change Password</a>
                     <a href="logout.php" class="btn btn-primary my-2" onClick="javascript: return confirm('Are you sure want to Logout.');">Logout</a>
 
                 </div>
@@ -189,7 +194,7 @@ if (isset($_POST['update'])) {
                         <div class="wel-form">
                             <h3 class="my-3" style="text-align: center;">Edit Your details</h3>
                             <form method="POST" action="index.php?userid=<?php echo $userid ?>" enctype="multipart/form-data">
-                                <div class="input-group my-2">
+                              <div class="input-group my-2">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i> </span>
                                     <input type="text" name="username" id="username" class="form-control " placeholder="Username" aria-label="username" value="<?php echo $row['username'] ?>" aria-describedby="basic-addon1">
                                 </div>
@@ -214,7 +219,6 @@ if (isset($_POST['update'])) {
             </div>
         </div>
     </div>
-
 
 
 

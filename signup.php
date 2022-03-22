@@ -9,8 +9,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (!isset($_FILES['user-image']['name'])) {
         $new_name = "";
-    }else{
-        
+    } else {
         $errors = array();
 
         $file_name = $_FILES['user-image']['name'];
@@ -67,21 +66,19 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $result = mysqli_query($conn, $sql);
             if ($result) {
 
-              $to_email = $email;
-              $subject = "Email activation.";
-              $body = "Hi $username. Click here to acitvate your account
+                $to_email = $email;
+                $subject = "Email activation.";
+                $body = "Hi $username. Click here to acitvate your account
                       http://localhost/AdvanceLoginSystem/activate.php?token=$token";
-              $headers = "From: santoshphaiju@gmail.com";
+                $headers = "From: santoshphaiju@gmail.com";
 
-              if(mail($to_email, $subject, $body, $headers)){
-                $_SESSION['alert'] = ' <p class="p-2 bg-success text-white"><strong>Success!</strong> Your account has been created. Please check your email to activate your account '. $email .'</p> 
+                if (mail($to_email, $subject, $body, $headers)) {
+                    $_SESSION['alert'] = ' <p class="p-2 bg-success text-white"><strong>Success!</strong> Your account has been created. Please check your email to activate your account ' . $email . '</p> 
                  ';
-              header("location: signup.php");
-              }
-              else{
-                  echo "Mail sending failed.";
-              }
-
+                    header("location: signup.php");
+                } else {
+                    echo "Mail sending failed.";
+                }
             }
         } else {
             $showError = ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -91,6 +88,10 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         }
     }
 }
+
+
+
+
 
 ?>
 <!doctype html>
@@ -107,11 +108,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         body {
             background: #f0f2f5;
         }
-        div .file{
+
+        div .file {
             display: block;
             text-align: justify;
         }
-      
     </style>
 </head>
 
@@ -138,10 +139,10 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             <button class="form-btn" id="f-btn"><i class="fab fa-facebook-f me-2"></i> Login Via Facebook</button>
             <p class="form-p"><span>OR</span></p>
             <?php
-                 if(isset($_SESSION['alert'])){
-                    echo $_SESSION['alert'];
-                }
-                
+            if (isset($_SESSION['alert'])) {
+                echo $_SESSION['alert'];
+            }
+
             ?>
 
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF']);  ?>" method="POST">
@@ -168,7 +169,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class="input-group mb-3 file" style="display: none;">
                     <label style="text-align: justify;" for="formFile" class="form-label">Choose Profile Image:</label>
                     <input style="width: 100%;" style="visibility: hidden;" class="user-image form-control" type="file" id="formFile" name="user-image">
-                    
+
                 </div>
 
                 <button class="btn btn-primary my-2 w-100 btn-form">Create Account</button>
@@ -178,9 +179,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
     </div>
-
-
-
 
 
 
